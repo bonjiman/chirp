@@ -119,7 +119,7 @@ std::vector<double> vco_square(std::span<const double> control,
                                double initial_phase = 0.0);
 
 /**
- * Alias for vco_cexp().  VCO complex exponential
+ * Complex exponential VCO; an alias for vco_cexp().
  * @param control Control signal, one value per output sample.
  * @param out Output. Same length as `control`; must not overlap it.
  * @param params Sensitivity, sample rate and carrier.
@@ -133,7 +133,7 @@ inline double vco(std::span<const double> control,
 }
 
 /**
- * Alias for vco_cexp(), allocating form.  VCO complex exponential
+ * Complex exponential VCO, allocating form; an alias for vco_cexp().
  * @param control Control signal, one value per output sample.
  * @param params Sensitivity, sample rate and carrier.
  * @param initial_phase φ[0] in radians. Must be finite.
@@ -144,4 +144,5 @@ inline std::vector<std::complex<double>> vco(std::span<const double> control,
                                              double initial_phase = 0.0) {
     return vco_cexp(control, params, initial_phase);
 }
+
 }  // namespace chirp::waveforms

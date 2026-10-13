@@ -12,15 +12,17 @@ yet.
 
 - A C++20 compiler. Development and testing use GCC 15 on Linux.
 - CMake 3.25 or later. Ninja is optional but recommended.
-- Git and network access the first time the tests are configured, to fetch
-  [Catch2](https://github.com/catchorg/Catch2) v3. An installed Catch2 3 is
-  used instead if CMake finds one. The library itself has no third-party
-  dependencies.
+- For the tests only, [Catch2](https://github.com/catchorg/Catch2) v3.
+  CMake uses an installed Catch2 3 if it finds one. Otherwise it fetches
+  Catch2 with Git and builds it from source in each build directory, which
+  adds about 40 seconds to the first build. The library itself has no
+  third-party dependencies, and projects that use chirp never build
+  Catch2.
 
 On Ubuntu:
 
 ```sh
-sudo apt install build-essential cmake ninja-build git
+sudo apt install build-essential cmake ninja-build git catch2
 ```
 
 ## Building

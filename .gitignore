@@ -2,3 +2,5 @@
 CLAUDE.md
 AGENTS.md
 .claude
+.venv
+build/

@@ -1,0 +1,62 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {"major": 3, "minor": 25, "patch": 0},
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+        {
+            "name": "dev",
+            "displayName": "Debug, sanitizers, warnings as errors",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CHIRP_SANITIZE": "ON",
+                "CHIRP_WARNINGS_AS_ERRORS": "ON"
+            }
+        },
+        {
+            "name": "release",
+            "displayName": "Release",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "release-shared",
+            "displayName": "Release, shared library",
+            "inherits": "release",
+            "cacheVariables": {
+                "BUILD_SHARED_LIBS": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {"name": "dev", "configurePreset": "dev"},
+        {"name": "release", "configurePreset": "release"},
+        {"name": "release-shared", "configurePreset": "release-shared"}
+    ],
+    "testPresets": [
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "output": {"outputOnFailure": true}
+        },
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "output": {"outputOnFailure": true}
+        },
+        {
+            "name": "release-shared",
+            "configurePreset": "release-shared",
+            "output": {"outputOnFailure": true}
+        }
+    ]
+}
